@@ -5,8 +5,17 @@ from environment import EquiTriageEnv, EquiTriageAction
 env = EquiTriageEnv()
 
 async def triage_ui(action_type):
-    # Map button names to Action IDs from your environment
-    action_map = {"Assign Bed": 0, "De-escalate": 1, "Equity Bonus": 2, "Flag Bias": 3}
+    # BUG FIX 1: Bring in a patient if the hospital is empty!
+    if not env.current_state:
+        await env.reset()
+
+    # BUG FIX 2: Make sure the dictionary matches the exact button text
+    action_map = {
+        "Assign Bed": 0, 
+        "De-escalate Crowd": 1, 
+        "Apply Equity Bonus": 2, 
+        "Flag Bias Attempt": 3
+    }
     action_id = action_map[action_type]
     
     # Run the logic
@@ -50,5 +59,4 @@ with gr.Blocks(title="EquiTriage Dashboard") as demo:
     btn3.click(triage_ui, inputs=[btn3], outputs=[out])
 
 if __name__ == "__main__":
-    # Crucial: This port (7860) and server_name are required for Hugging Face Spaces
     demo.launch(server_name="0.0.0.0", server_port=7860)
