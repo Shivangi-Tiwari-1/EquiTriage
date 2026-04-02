@@ -74,13 +74,13 @@ The agent perceives the ward as a multi-dimensional vector:
 ### **Installation**
 ```bash
 # Clone the repository
-git clone [https://github.com/Shivangi-Tiwari-1/EquiTriage.git](https://github.com/Shivangi-Tiwari-1/EquiTriage.git)
+git clone https://github.com/Shivangi-Tiwari-1/EquiTriage.git
 cd EquiTriage
 
 # Install dependencies using uv
 uv pip install -r requirements.txt
 
----
+
 ```
 
 
