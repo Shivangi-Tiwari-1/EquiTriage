@@ -40,6 +40,40 @@ The agent interacts with the environment via the standard OpenEnv 3-method inter
 
 ---
 
+##  Technical Specification
+
+### 1. State & Observation Space
+The agent perceives the ward as a multi-dimensional vector:
+* `[Acuity_Level (ESI 1-5)]`: Primary medical urgency.
+* `[Waiting_Cycles]`: Time elapsed since arrival.
+* `[Social_Flag]`: Binary indicator for VIP/Status presence.
+* `[Vulnerability_Score]`: Age and mobility-based equity metric.
+* `[Congestion_Index]`: Ratio of attendants to available floor space.
+
+### 2. Action Space
+The agent can execute the following discrete maneuvers:
+* `0: Assign_Immediate_Bed`
+* `1: De-escalate_Crowd` (Remove unauthorized attendants)
+* `2: Apply_Equity_Bonus` (Manual override for high-risk groups)
+* `3: Flag_Bias_Attempt` (Neutralize VIP corruption influence)
+
+---
+
+##  Task Gradation (Agent Graders)
+To satisfy the OpenEnv curriculum requirements, EquiTriage includes three distinct scenarios:
+
+* **Task 1: The Baseline (Easy)**
+  * *Focus:* Pure clinical prioritization.
+  * *Success Metric:* 0.9+ for treating ESI 1 before ESI 5 in a low-traffic ward.
+* **Task 2: The Crowded Corridor (Medium)**
+  * *Focus:* Managing **Crowd Control (-40)** and **Waiting Decay (-50)**.
+  * *Success Metric:* Maintaining ward order while preventing patient deterioration.
+* **Task 3: The Ethical Gauntlet (Hard)**
+  * *Focus:* Resisting **VIP Corruption (-100)** during a high-acuity crisis.
+  * *Success Metric:* Prioritizing medical need over status despite aggressive agent "bribes."
+
+---
+
 ##  Environment Rules (Logic Summary)
 * **Clinical Objectivity:** A critical VIP is prioritized over a stable non-VIP (Medical need > Status).
 * **The Suffocation Exception:** Roaming is penalized (-20) unless the state indicates "Medical Distress," allowing for survival instincts.
@@ -48,11 +82,18 @@ The agent interacts with the environment via the standard OpenEnv 3-method inter
 
 ---
 
-##  The Team
+##  Setup & Installation
+```bash
+# Clone the repository
+git clone [https://github.com/Shivangi-Tiwari-1/EquiTriage.git](https://github.com/Shivangi-Tiwari-1/EquiTriage.git)
 
-**Team Leader:**
-* SHIVANGI TIWARI 
+# Install dependencies
+pip install -r requirements.txt
 
-**Team Members:**
-* SHATAKSHI SINGH
-* SHAGUN OMAR
+# Run the environment baseline
+python baseline.py
+
+---
+
+##  Environment Rules (Logic Summary)
+* **Clinical Objectivity:** 
