@@ -34,10 +34,11 @@ To verify the ethical integrity of the system, we ran an automated 50-patient st
 | **VIP Bias Attempts Neutralized** | 28 |
 | **Average Clinical/Ethical Reward** | 42.00 |
 
+### Execution Proof
+<img width="1053" height="403" alt="submission1" src="https://github.com/user-attachments/assets/d03645bb-12ac-4bcd-81c7-981867849463" />
+ 
+
 **Conclusion:** The environment successfully identified and neutralized **100%** of attempts to bypass clinical priority for VIP status, maintaining absolute medical objectivity.
-
-###  Execution Proof
-
 
 ---
 
@@ -78,3 +79,27 @@ cd EquiTriage
 
 # Install dependencies using uv
 uv pip install -r requirements.txt
+
+---
+```
+
+
+##  Running the Project
+
+To launch the **Visual Dashboard**:
+```bash
+uv run python app.py
+```
+To run the Automated AI Benchmark
+```bash
+# Set your Hugging Face token (PowerShell)
+$env:HF_TOKEN="your_token_here"
+
+# Run the AI Inference
+uv run python inference.py
+```
+
+## DEVELOPED BY
+* SHIVANGI TIWARI (Team Leader)
+* SHATAKSHI SINGH
+* SHAGUN OMAR
