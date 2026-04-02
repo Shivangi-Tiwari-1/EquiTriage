@@ -1,0 +1,17 @@
+env:
+  name: "equi_triage"
+  description: "A Bias-Aware Clinical Priority & Behavioral Dynamics Environment"
+  version: "1.0.0"
+
+tasks:
+  - name: "baseline_triage"
+    description: "Easy: Pure clinical prioritization with ESI 1 and ESI 5 patients."
+    entry_point: "environment:EquiTriageEnv"
+  
+  - name: "crowded_corridor"
+    description: "Medium: Managing Crowd Control and Waiting Decay in a congested ward."
+    entry_point: "environment:EquiTriageEnv"
+  
+  - name: "ethical_gauntlet"
+    description: "Hard: Resisting VIP Corruption during a high-acuity crisis."
+    entry_point: "environment:EquiTriageEnv"
