@@ -1,8 +1,12 @@
 import gradio as gr
 import asyncio
 from fastapi import FastAPI
+from .server import app as api_app # The dot is crucial!
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from environment import EquiTriageEnv, EquiTriageAction
-from server import app as api_app # Import the FastAPI app from your server.py
 
 env = EquiTriageEnv()
 
@@ -36,11 +40,10 @@ async def triage_ui(action_type):
         
     return display
 
-# Build the Gradio Interface
 with gr.Blocks(title="EquiTriage Dashboard") as demo:
     gr.Markdown("# 🏥 EquiTriage: Bias-Aware Clinical Priority")
     with gr.Row():
-        out = gr.Markdown("### Welcome, Administrator. Click a button to begin Triage...")
+        out = gr.Markdown("### Welcome, Administrator...")
     with gr.Row():
         btn0 = gr.Button("Assign Bed", variant="primary")
         btn1 = gr.Button("De-escalate Crowd")
@@ -52,11 +55,12 @@ with gr.Blocks(title="EquiTriage Dashboard") as demo:
     btn2.click(triage_ui, inputs=[btn2], outputs=[out])
     btn3.click(triage_ui, inputs=[btn3], outputs=[out])
 
-# --- THE MAGIC MOUNT ---
-# This attaches your Gradio UI to the FastAPI app from server.py
+# The Combined App
 app = gr.mount_gradio_app(api_app, demo, path="/")
 
-if __name__ == "__main__":
+def main():
     import uvicorn
-    # Use uvicorn to run the combined 'app'
     uvicorn.run(app, host="0.0.0.0", port=7860)
+
+if __name__ == "__main__":
+    main()
