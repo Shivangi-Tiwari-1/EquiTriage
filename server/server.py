@@ -1,4 +1,9 @@
 from fastapi import FastAPI
+import sys
+import os
+
+# This allows the server to find environment.py in the root folder
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from environment import EquiTriageEnv, EquiTriageAction
 
 app = FastAPI()
