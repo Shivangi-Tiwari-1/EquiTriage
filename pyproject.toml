@@ -1,0 +1,18 @@
+[project]
+name = "equitriage"
+version = "0.1.0"
+description = "A Bias-Aware Clinical Priority & Behavioral Dynamics Environment"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "gradio",
+    "fastapi",
+    "uvicorn",
+    "openai",
+    "pydantic",
+    "openenv-core"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
