@@ -1,7 +1,7 @@
 [project]
 name = "equitriage"
 version = "0.1.0"
-description = "A Bias-Aware Clinical Priority & Behavioral Dynamics Environment"
+description = "A Bias-Aware Clinical Priority Environment"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -14,8 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-# This points the grader to the main function in your new server/app.py
-equitri-server = "server.app:main"
+server = "server.app:main"
 
 [build-system]
 requires = ["hatchling"]
